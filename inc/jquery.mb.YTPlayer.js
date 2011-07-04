@@ -53,6 +53,7 @@
 					data.ratio="16/9";
 					data.bufferImg=false;
 					data.autoplay=true;
+					//data.modestbranding=1;
 
 					var BGisInit = typeof document.YTPBG != "undefined";
 
@@ -72,6 +73,7 @@
 						if ($(this).metadata().bufferImg) {data.bufferImg=$(this).metadata().bufferImg;}
 						if ($(this).metadata().ID) {data.ID=$(this).metadata().ID;}
 						if ($(this).metadata().autoplay!=undefined) {data.autoplay=$(this).metadata().autoplay;}
+						//if ($(this).metadata().modestbranding!=undefined) {data.modestbranding=$(this).metadata().modestbranding;}
 					}
 
 					var el= data.ID?$("#"+data.ID):$("body");
@@ -114,7 +116,7 @@
 					}
 
 					var params = { allowScriptAccess: "always", wmode:"transparent", allowFullScreen:"true" };
-					var atts = { id: ID };
+					var atts = { id : ID};
 					data.movieURL=$(this).attr("href")?($(this).attr("href").match( /[\\?&]v=([^&#]*)/))[1]:false;
 
 					//swfobject.embedSWF(swfUrl, id, width, height, version, expressInstallSwfurl, flashvars, params, attributes, callbackFn)
@@ -130,7 +132,7 @@
 
 			var data = $("#"+player.id+"_data").get(0);
 			var BGisInit = typeof document.YTPBG != "undefined";
-			var movieID= data.movieURL;
+			var movieID= data.movieURL; //+"&modestbranding="+data.modestbranding
 
 			$(player).css({opacity:data.opacity});
 			var pos= data.ID?"absolute":"fixed";
@@ -171,7 +173,9 @@
 			var player = $(this).get(0);
 			var data = $("#"+player.id+"_data").get(0);
 			data.movieURL=(url.match( /[\\?&]v=([^&#]*)/))[1];
-			player.loadVideoByUrl("http://www.youtube.com/v/"+data.movieURL, 0);
+			var movieID= data.movieURL; //+"&modestbranding="+data.modestbranding
+			player.loadVideoByUrl("http://www.youtube.com/v/"+movieID, 0);
+			alert("http://www.youtube.com/v/"+movieID)
 		},
 		getPlayer:function(){
 			return this.get(0);
@@ -300,7 +304,7 @@
 
 	$.fn.mb_YTPlayer = $.mbYTPlayer.setYTPlayer;
 	$.fn.mb_setMovie = $.mbYTPlayer.setMovie;
-	$.fn.mb_changeMovie = $.mbYTPlayer.changeMovie;
+	$.fn.changeMovie = $.mbYTPlayer.changeMovie;
 
 	$.fn.getPlayer = $.mbYTPlayer.getPlayer;
 	$.fn.buildYTPControls = $.mbYTPlayer.buildYTPControls;
@@ -312,12 +316,14 @@
 	$.fn.manageYTPProgress = $.mbYTPlayer.manageYTPProgress;
 
 
+/*
 	$.fn.changeMovie=function(url){
 		var player = $(this).get(0);
 		var data = $("#"+player.id+"_data").get(0);
 		data.movieURL=(url.match( /[\\?&]v=([^&#]*)/))[1];
 		player.loadVideoByUrl("http://www.youtube.com/v/"+data.movieURL, 0);
 	};
+*/
 
 	$.fn.changeVolume=function(val){
 		var player = $(this).get(0);
