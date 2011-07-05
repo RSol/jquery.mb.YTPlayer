@@ -1,6 +1,6 @@
 /*******************************************************************************
  jquery.mb.components
- Copyright (c) 2001-2010. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+ Copyright (c) 2001-2011. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
  email: mbicocchi@open-lab.com
  site: http://pupunzi.com
 
@@ -53,7 +53,6 @@
 					data.ratio="16/9";
 					data.bufferImg=false;
 					data.autoplay=true;
-					//data.modestbranding=1;
 
 					var BGisInit = typeof document.YTPBG != "undefined";
 
@@ -164,9 +163,7 @@
 				player.cueVideoByUrl("http://www.youtube.com/v/"+movieID, 0);
 				$(player).buildYTPControls();
 			}
-
-			//player.setPlaybackQuality(data.quality);
-
+			
 			player.addEventListener("onStateChange", '(function(state) { return playerState(state, "' + player.id + '"); })');
 		},
 		changeMovie:function(url){
