@@ -12,7 +12,7 @@
 /*
  * jQuery.mb.components: jquery.mb.YTPlayer
  * version: 1.2.6 - 6-feb-2010 - 43
- * © 2001 - 2010 Matteo Bicocchi (pupunzi), Open Lab
+ * © 2001 - 2011 Matteo Bicocchi (pupunzi), Open Lab
  *
  */
 
@@ -172,7 +172,6 @@
 			data.movieURL=(url.match( /[\\?&]v=([^&#]*)/))[1];
 			var movieID= data.movieURL; //+"&modestbranding="+data.modestbranding
 			player.loadVideoByUrl("http://www.youtube.com/v/"+movieID, 0);
-			alert("http://www.youtube.com/v/"+movieID)
 		},
 		getPlayer:function(){
 			return this.get(0);
@@ -375,7 +374,7 @@ $.fn.toggleVideoState=function(){
 	var player=this.get(0);
 	var isInit=player.isInit;
 	if (isInit=="undefined")
-		this..mb_YTPlayer();
+		this.mb_YTPlayer();
 	else if (player.getPlayerState()== 1)
 		player.pauseVideo();
 	else
